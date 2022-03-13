@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+            speak(){
+                //speak放在类的原型对象上，供实例使用
+                //通过Person实例调用speak时，this指向Person实例
+                console.log(this)//Person实例对象
+            }
+        }
+
+        const p1=new Person('tom',18)
+        p1.speak()
+        const x=p1.speak
+        x()//undefind: 类中所有的方法都开启了严格模式,所以不是window
+    </script>
+
+</body>
+
+</html>

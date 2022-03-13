@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //创建一个person类
+        class Person{
+            //构造器方法
+            constructor(name,age){
+                //构造器中的this是谁->类的实例对象
+                this.name=name
+                this.age=age
+            }
+            //一般方法
+            speak(){
+                //speak方法放在了哪里？——类的原型对象上，供实例使用
+                //通过person实例调用speak时，this就是person实例
+                console.log(`我叫${this.name}`)
+            }
+
+        }
+        //创建一个Person实例对象
+        const p1 =new Person('tom',18)
+        const p2 =new Person('jerry',19)
+        p1.speak()//在读取了对象自身不存在的属性和方法时，就会沿着原型链去找
+
+        //继承——创建一个Student类，继承于Person类
+        class Student extends Person{
+            //可以不写构造器直接用继承来的，如果想有自己独有的就可以写构造器
+            constructor(name,age,grade){
+                super(name,age)//继承父类，写了constructor，就必须写super，否则要报错。把参数传过去，super必须放在最前面
+                this.grade=grade
+            }
+            speak(){
+                console.log(`我叫${this.name},111111`) 
+            }
+            study(){
+                console.log(`学习学习学习`) 
+            }
+        }
+        const s1=new Student('小张',15,'高一')
+        s1.speak()//Student里不写speck也是可以的，因为会沿着原型链往上找。如果对这个方法有添加其他的操作，就需要在Student里重写
+        console.log(s1)
+    </script>
+</body>
+</html>
